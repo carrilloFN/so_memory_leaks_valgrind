@@ -1,0 +1,24 @@
+Ejecucion:
+valgrind <parametros> ./programa
+
+Parametros:
+--leak-check=full 	-> Habilita detector de memory leaks
+--track-origin=yes 	-> Rastrea donde se intento utilizar memoria sin inicializar
+--log-file="archivo"	-> Genera un log-file con las salidas de valgrind
+
+
+Errores tipicos:
+
+Adress 0x????? is Y bytes after a block of size Z alloc'd
+Me pase del tamaño disponible.
+
+Conditional jump or move depends on unitialised values
+Uso de variables o estructuras no inicializadas.
+
+Syscall param contains unitialised bytes.
+
+------------------------------
+
+Possibly lost	-> Generalmente con pthread_create al finalizar un hilo y no liberar sus estructuras
+Definitly Lost 	-> Faltan Free's
+Still reachable	-> Estructuras que libera el sistema operativo, por lo cual no requieren un free
